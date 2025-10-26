@@ -12,17 +12,40 @@
 
 <!-- Hero Section -->
 <section
-  class="min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-bl from-emerald-200 via-teal-50 to-white dark:from-emerald-950 dark:via-gray-900 dark:to-gray-800 transition-all duration-500">
-  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+  class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-bl from-emerald-200 via-teal-50 to-white dark:from-emerald-950 dark:via-gray-900 dark:to-gray-800 transition-all duration-500">
+
+  <!-- Floating Orbs Background (Inside Section) -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div
+      class="absolute top-20 left-10 w-72 h-72 bg-emerald-500 opacity-30 dark:opacity-20 rounded-full blur-3xl animate-float-slow">
+    </div>
+    <div
+      class="absolute bottom-20 right-10 w-96 h-96 bg-teal-500 opacity-30 dark:opacity-20 rounded-full blur-3xl animate-float-slower">
+    </div>
+    <div
+      class="absolute top-1/2 left-1/3 w-64 h-64 bg-lime-500 opacity-25 dark:opacity-15 rounded-full blur-3xl animate-float">
+    </div>
+  </div>
+
+  <!-- Particle System (Inside Section) -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div id="particles-container" class="absolute inset-0"></div>
+  </div>
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
     <div
       class="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 lg:gap-16 items-center transform md:scale-105 lg:scale-110 origin-center transition-transform duration-500 ease-out">
 
-      <!-- Gambar -->
+      <!-- Gambar dengan 3D Rotating Rings -->
       <div class="order-1 md:order-2 flex justify-center md:justify-end" data-aos="zoom-in-up" data-aos-delay="400"
         data-aos-duration="800">
-        <div class="animate-float">
+        <div class="relative animate-float">
+          <!-- 3D Rotating Rings -->
+          <div class="absolute inset-0 border-4 border-emerald-500/30 rounded-full animate-spin-slow"></div>
+          <div class="absolute inset-4 border-2 border-teal-500/20 rounded-full animate-spin-reverse"></div>
+
+          <!-- Logo -->
           <img src="{{ asset('logo-biu.png') }}" alt="Logo Bina Insani University"
-            class="w-40 sm:w-56 md:w-[26rem] lg:w-[30rem] xl:w-[34rem] h-auto object-contain" />
+            class="w-40 sm:w-56 md:w-[26rem] lg:w-[30rem] xl:w-[34rem] h-auto object-contain relative z-10" />
         </div>
       </div>
 
@@ -84,5 +107,135 @@
     </div>
   </div>
 </section>
+
+<!-- Custom Animations CSS -->
+<style>
+  /* Floating Orbs Animations */
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes float-slow {
+
+    0%,
+    100% {
+      transform: translate(0, 0);
+    }
+
+    50% {
+      transform: translate(30px, -30px);
+    }
+  }
+
+  @keyframes float-slower {
+
+    0%,
+    100% {
+      transform: translate(0, 0);
+    }
+
+    50% {
+      transform: translate(-30px, 30px);
+    }
+  }
+
+  /* 3D Rotating Rings Animations */
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes spin-reverse {
+    from {
+      transform: rotate(360deg);
+    }
+
+    to {
+      transform: rotate(0deg);
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-float-slow {
+    animation: float-slow 20s ease-in-out infinite;
+  }
+
+  .animate-float-slower {
+    animation: float-slower 25s ease-in-out infinite;
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 15s linear infinite;
+  }
+
+  .animate-spin-reverse {
+    animation: spin-reverse 20s linear infinite;
+  }
+</style>
+
+<!-- Particle System JavaScript -->
+<script>
+  // Create floating particles
+function createParticles() {
+  const container = document.getElementById('particles-container');
+  if (!container) return;
+  
+  const particleCount = 30;
+  
+  for (let i = 0; i < particleCount; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    particle.style.cssText = `
+      position: absolute;
+      width: ${Math.random() * 4 + 2}px;
+      height: ${Math.random() * 4 + 2}px;
+      background: ${Math.random() > 0.5 ? '#10b981' : '#14b8a6'};
+      border-radius: 50%;
+      left: ${Math.random() * 100}%;
+      top: ${Math.random() * 100}%;
+      opacity: ${Math.random() * 0.5 + 0.2};
+      animation: particle-float ${Math.random() * 10 + 10}s linear infinite;
+      animation-delay: ${Math.random() * 5}s;
+    `;
+    container.appendChild(particle);
+  }
+}
+
+// Particle animation keyframes
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes particle-float {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(100px, -100px) rotate(90deg); }
+    50% { transform: translate(200px, 0) rotate(180deg); }
+    75% { transform: translate(100px, 100px) rotate(270deg); }
+    100% { transform: translate(0, 0) rotate(360deg); }
+  }
+`;
+document.head.appendChild(style);
+
+// Initialize particles on load
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', createParticles);
+} else {
+  createParticles();
+}
+</script>
 
 @endsection

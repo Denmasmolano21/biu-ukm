@@ -6,8 +6,9 @@
 @include('layouts.navbar')
 
 <!-- 🌿 Hero Section -->
-<section class="bg-gradient-to-br from-emerald-500 to-teal-600 dark:bg-gray-900 py-28 relative overflow-hidden transition-colors duration-500">
-  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+<section
+  class="bg-gradient-to-br from-emerald-500 to-teal-600 dark:bg-gray-900 py-28 relative overflow-hidden transition-colors duration-500">
+  <div class="relative z-10 max-w-7xl mx-auto mt-10 px-4 sm:px-6 lg:px-8 text-center">
     <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4 drop-shadow-lg">
       Hubungi Kami
     </h1>
@@ -162,15 +163,10 @@
       class="bg-gray-200 dark:bg-gray-700 rounded-2xl overflow-hidden shadow-lg relative group h-[400px] transition-all duration-500 hover:shadow-emerald-500/20">
       <div
         class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-emerald-100 to-teal-100 dark:from-emerald-900/40 dark:to-teal-800/40 transition-colors duration-700">
-        <div class="text-center">
-          <svg class="w-16 h-16 text-emerald-600 dark:text-emerald-400 mx-auto mb-4" fill="currentColor"
-            viewBox="0 0 24 24">
-            <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-            <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-          </svg>
-          <p class="text-gray-600 dark:text-gray-300 font-semibold">Jl. Raya Siliwangi No.6, Bekasi</p>
-          <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">Embed Google Maps di sini</p>
-        </div>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.0296537088107!2d106.99192877586863!3d-6.259824261288034!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e698dce2ab0c19d%3A0x5705a69c5fd93556!2sUniversitas%20Bina%20Insani!5e0!3m2!1sid!2sid!4v1761466264388!5m2!1sid!2sid"
+            width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
   </div>

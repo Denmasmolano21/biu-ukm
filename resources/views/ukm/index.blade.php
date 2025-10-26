@@ -10,7 +10,7 @@
 <section
   class="bg-gradient-to-br from-emerald-500 to-teal-600 dark:bg-gray-900 py-28 relative overflow-hidden transition-colors duration-500">
   <div class="relative max-w-6xl mx-auto mt-10 px-6 text-center">
-    <h1 class="text-4xl md:text-5xl font-extrabold text-white dark:text-emerald-300 mb-4 drop-shadow-md">
+    <h1 class="text-4xl md:text-5xl font-extrabold text-white dark:text-emerald-300 dark:text-white mb-4 drop-shadow-md">
       Jelajahi Semua UKM di Bina Insani University
     </h1>
     <p class="text-lg text-emerald-50 dark:text-emerald-200 max-w-2xl mx-auto">
