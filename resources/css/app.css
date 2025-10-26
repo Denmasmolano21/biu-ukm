@@ -5,6 +5,7 @@
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
+/* 🎨 Global Theme Variables */
 @theme {
   --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -14,12 +15,37 @@
   --color-text-dark: #f1f5f9; /* slate-100 */
 }
 
+/* 🌗 Dark mode variant */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* ✨ Global smooth scroll & transition */
 * {
   scroll-behavior: smooth;
+  transition: background-color 0.6s ease, color 0.6s ease,
+    border-color 0.6s ease, box-shadow 0.6s ease, transform 0.3s ease;
 }
 
+/* 🌈 Smooth theme switch overlay */
+body.mode-switch {
+  position: relative;
+  overflow: hidden;
+}
+body.mode-switch::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.05);
+  /* backdrop-filter: blur(8px); */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+  z-index: 9999;
+}
+body.mode-switch.active::after {
+  opacity: 1;
+}
+
+/* 🌊 Floating animation */
 @keyframes float {
   0%,
   100% {
@@ -30,6 +56,7 @@
   }
 }
 
+/* 💫 Soft pulse glow */
 @keyframes softPulse {
   0%,
   100% {
@@ -40,19 +67,20 @@
   }
 }
 
+/* ⚡ Shimmer gradient animation */
 @keyframes shimmer {
   0% {
-    background-position: 0%;
+    background-position-x: 0%;
   }
   50% {
-    background-position: 100%;
+    background-position-x: 100%;
   }
   100% {
-    background-position: 0%;
+    background-position-x: 0%;
   }
 }
 
-/* 🌀 Custom utility classes */
+/* 🧩 Custom utilities */
 @utility animate-float {
   animation: float 4s ease-in-out infinite;
 }
@@ -62,5 +90,8 @@
 }
 
 @utility animate-shimmer {
+  background-size: 300% 100%;
   animation: shimmer 6s ease-in-out infinite;
+  filter: brightness(1.3) saturate(1.5);
+  -webkit-animation: shimmer 6s ease-in-out infinite;
 }
