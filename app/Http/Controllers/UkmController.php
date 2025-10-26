@@ -8,57 +8,58 @@ use Illuminate\Http\Request;
 
 class UkmController extends Controller
 {
+    /**
+     * Tampilkan daftar UKM dengan filter, pencarian, dan sorting.
+     */
     public function index(Request $request)
     {
         $query = Ukm::with(['kategori', 'dokumentasi'])
             ->active()
             ->withCount('anggotaActive');
 
-        // Filter by kategori
-        if ($request->has('kategori') && $request->kategori != 'semua') {
-            $kategori = KategoriUkm::where('slug', $request->kategori)->first();
+        // 🔍 Filter berdasarkan kategori
+        $kategoriSlug = $request->get('kategori');
+        if ($kategoriSlug && $kategoriSlug !== 'semua') {
+            $kategori = KategoriUkm::where('slug', $kategoriSlug)->first();
             if ($kategori) {
                 $query->byKategori($kategori->id);
             }
         }
 
-        // Search
-        if ($request->has('search') && $request->search != '') {
-            $query->search($request->search);
+        // 🔎 Pencarian
+        if ($search = $request->get('search')) {
+            $query->search($search);
         }
 
-        // Sorting
+        // 🔄 Sorting
         $sort = $request->get('sort', 'nama_asc');
-        switch ($sort) {
-            case 'nama_asc':
-                $query->orderBy('nama', 'asc');
-                break;
-            case 'nama_desc':
-                $query->orderBy('nama', 'desc');
-                break;
-            case 'populer':
-                $query->orderBy('views', 'desc');
-                break;
-            case 'terbaru':
-                $query->orderBy('created_at', 'desc');
-                break;
-            default:
-                $query->orderBy('nama', 'asc');
-        }
+        $sortOptions = [
+            'nama_asc'   => ['nama', 'asc'],
+            'nama_desc'  => ['nama', 'desc'],
+            'populer'    => ['views', 'desc'],
+            'terbaru'    => ['created_at', 'desc'],
+        ];
 
-        $ukms = $query->paginate(12);
+        [$column, $direction] = $sortOptions[$sort] ?? ['nama', 'asc'];
+        $query->orderBy($column, $direction);
+
+        // 📄 Pagination
+        $ukms = $query->paginate(12)->withQueryString();
+
+        // 📚 Ambil semua kategori aktif
         $kategoris = KategoriUkm::active()->ordered()->get();
 
         return view('ukm.index', compact('ukms', 'kategoris'));
     }
 
+    /**
+     * Tampilkan detail UKM berdasarkan slug.
+     */
     public function show($slug)
     {
         $ukm = Ukm::with([
             'kategori',
-            'dokumentasi' => function ($q) {
-                $q->ordered();
-            },
+            'dokumentasi' => fn($q) => $q->ordered(),
             'anggotaActive',
             'pengurus'
         ])
@@ -66,10 +67,10 @@ class UkmController extends Controller
             ->active()
             ->firstOrFail();
 
-        // Increment views
+        // 👁️ Tambah jumlah views
         $ukm->incrementViews();
 
-        // UKM terkait berdasarkan kategori yang sama
+        // 🔗 UKM terkait (kategori sama, random)
         $relatedUkms = Ukm::with('kategori')
             ->where('kategori_ukm_id', $ukm->kategori_ukm_id)
             ->where('id', '!=', $ukm->id)

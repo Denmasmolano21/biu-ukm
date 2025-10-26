@@ -22,7 +22,6 @@
 
   <!-- Styles / Scripts -->
   @vite(['resources/css/app.css', 'resources/js/app.js'])
-
 </head>
 
 <body
@@ -36,44 +35,95 @@
   <!-- Script -->
   <script src="{{ asset('aos.js') }}"></script>
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const toggleBtn = document.getElementById('theme-toggle');
-      const icon = document.getElementById('theme-icon');
+    document.addEventListener("DOMContentLoaded", () => {
       const htmlEl = document.documentElement;
       const body = document.body;
 
-      if (!toggleBtn || !icon) return;
+      const navbar = document.getElementById('navbar');
+      const menuBtn = document.getElementById('mobile-menu-btn');
+      const menu = document.getElementById('mobile-menu');
+      const menuIcon = document.getElementById('menu-icon');
+      const closeIcon = document.getElementById('close-icon');
 
-      // 🌙 Setup awal
-      if (localStorage.theme === 'dark'
-        || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-      ) {
+      // Semua tombol & ikon dark mode (desktop + mobile)
+      const toggleButtons = [document.getElementById('theme-toggle'), document.getElementById('theme-toggle-mobile')].filter(Boolean);
+      const icons = [document.getElementById('theme-icon'), document.getElementById('theme-icon-mobile')].filter(Boolean);
+
+      // === 🌗 Setup Tema Awal ===
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+
+      if (isDark) {
         htmlEl.classList.add('dark');
-        icon.classList.replace('fa-moon', 'fa-sun');
+        icons.forEach(i => i?.classList.replace('fa-moon', 'fa-sun'));
       } else {
         htmlEl.classList.remove('dark');
-        icon.classList.replace('fa-sun', 'fa-moon');
+        icons.forEach(i => i?.classList.replace('fa-sun', 'fa-moon'));
       }
 
-      // 🌗 Toggle dengan transisi lembut
-      toggleBtn.addEventListener('click', () => {
-        body.classList.add('mode-switch', 'active');
+      // === 🪄 Toggle Tema Sinkron ===
+      toggleButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const darkMode = htmlEl.classList.toggle('dark');
+          localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+          body.classList.add('mode-switch', 'active');
 
-        const isDark = htmlEl.classList.toggle('dark');
-        if (isDark) {
-          icon.classList.replace('fa-moon', 'fa-sun');
-          localStorage.theme = 'dark';
-        } else {
-          icon.classList.replace('fa-sun', 'fa-moon');
-          localStorage.theme = 'light';
-        }
+          icons.forEach(i => {
+            if (!i) return;
+            i.classList.toggle('fa-sun', darkMode);
+            i.classList.toggle('fa-moon', !darkMode);
+          });
 
-        // Animasi blur halus
-        setTimeout(() => body.classList.remove('active'), 250);
-        setTimeout(() => body.classList.remove('mode-switch'), 600);
+          // Transisi lembut shimmer/blur
+          setTimeout(() => body.classList.remove('active'), 250);
+          setTimeout(() => body.classList.remove('mode-switch'), 600);
+        });
       });
 
-      // AOS init
+      // === 🌿 Navbar Shadow + Background on Scroll ===
+      if (navbar) {
+        const baseClasses = ['transition-all', 'duration-500', 'backdrop-blur-md'];
+        navbar.classList.add(...baseClasses);
+
+        // Set initial background
+        navbar.classList.add('bg-white/80', 'dark:bg-gray-900/60');
+
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 50) {
+            navbar.classList.add(
+              'shadow-lg',
+              'bg-white/95',
+              'dark:bg-gray-900/95',
+              'border-b',
+              'border-gray-200',
+              'dark:border-gray-800'
+            );
+            navbar.classList.remove('bg-white/80', 'dark:bg-gray-900/60');
+          } else {
+            navbar.classList.remove(
+              'shadow-lg',
+              'bg-white/95',
+              'dark:bg-gray-900/95',
+              'border-b',
+              'border-gray-200',
+              'dark:border-gray-800'
+            );
+            navbar.classList.add('bg-white/80', 'dark:bg-gray-900/60');
+          }
+        });
+      }
+
+      // === 📱 Mobile Menu Toggle ===
+      if (menuBtn && menu && menuIcon && closeIcon) {
+        menuBtn.addEventListener('click', () => {
+          menu.classList.toggle('hidden');
+          menuIcon.classList.toggle('hidden');
+          closeIcon.classList.toggle('hidden');
+        });
+      }
+
+      // === 🎞️ AOS Init ===
       AOS.init({
         duration: 900,
         easing: 'ease-in-out-sine',

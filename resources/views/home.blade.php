@@ -59,8 +59,8 @@
           <a href="/ukm" class="group relative overflow-hidden bg-gradient-to-r from-emerald-500 to-emerald-600 
                    text-white px-6 py-2 sm:px-8 sm:py-3 md:px-10 md:py-4 rounded-2xl font-semibold 
                    text-base sm:text-lg shadow-md transition-all duration-300 ease-in-out 
-                   hover:scale-105 hover:shadow-emerald-400/40 hover:shadow-lg" data-aos="fade-up"
-          data-aos-delay="400" data-aos-duration="900">
+                   hover:scale-105 hover:shadow-emerald-400/40 hover:shadow-lg" data-aos="fade-up" data-aos-delay="400"
+            data-aos-duration="900">
             <span class="relative z-10 flex items-center">
               Jelajahi
               <i class="fa-solid fa-arrow-right ml-2 transition-transform duration-300 group-hover:translate-x-1"></i>
@@ -73,8 +73,7 @@
           <a href="/tentangkami" class="group relative overflow-hidden bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 
                    text-gray-700 dark:text-gray-200 px-6 py-2 sm:px-8 sm:py-3 md:px-10 md:py-4 rounded-2xl 
                    font-semibold text-base sm:text-lg shadow-md transition-all duration-300 ease-in-out 
-                   hover:scale-105 hover:shadow-xl" data-aos="fade-up"
-          data-aos-delay="800" data-aos-duration="900">
+                   hover:scale-105 hover:shadow-xl" data-aos="fade-up" data-aos-delay="800" data-aos-duration="900">
             <span class="relative z-10">Tentang Kami</span>
             <span
               class="absolute inset-0 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm">
