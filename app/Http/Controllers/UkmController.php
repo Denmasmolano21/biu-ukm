@@ -26,12 +26,10 @@ class UkmController extends Controller
             }
         }
 
-        // 🔎 Pencarian
         if ($search = $request->get('search')) {
             $query->search($search);
         }
 
-        // 🔄 Sorting
         $sort = $request->get('sort', 'nama_asc');
         $sortOptions = [
             'nama_asc'   => ['nama', 'asc'],
@@ -43,10 +41,8 @@ class UkmController extends Controller
         [$column, $direction] = $sortOptions[$sort] ?? ['nama', 'asc'];
         $query->orderBy($column, $direction);
 
-        // 📄 Pagination
         $ukms = $query->paginate(12)->withQueryString();
 
-        // 📚 Ambil semua kategori aktif
         $kategoris = KategoriUkm::active()->ordered()->get();
 
         return view('ukm.index', compact('ukms', 'kategoris'));

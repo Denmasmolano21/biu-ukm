@@ -64,8 +64,12 @@
 
             <div>
               <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2">Pesan</label>
-              <textarea rows="6" placeholder="Tulis pesan Anda di sini..."
-                class="w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-600 rounded-lg focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/30 dark:bg-gray-700/60 dark:text-gray-100 resize-none transition-all"></textarea>
+              <textarea rows="6" placeholder="Tulis pesan Anda di sini..." class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg 
+                   text-gray-900 placeholder-gray-500
+                   dark:text-gray-100 dark:placeholder-gray-400 
+                   dark:border-gray-600 dark:bg-gray-700/60
+                   focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/30 
+                   transition-all"></textarea>
             </div>
 
             <button type="submit"
@@ -160,14 +164,11 @@
     <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Lokasi Kami</h2>
     <p class="text-gray-600 dark:text-gray-400 mb-10">Universitas Bina Insani, Bekasi</p>
     <div
-      class="bg-gray-200 dark:bg-gray-700 rounded-2xl overflow-hidden shadow-lg relative group h-[400px] transition-all duration-500 hover:shadow-emerald-500/20">
-      <div
-        class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-emerald-100 to-teal-100 dark:from-emerald-900/40 dark:to-teal-800/40 transition-colors duration-700">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.0296537088107!2d106.99192877586863!3d-6.259824261288034!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e698dce2ab0c19d%3A0x5705a69c5fd93556!2sUniversitas%20Bina%20Insani!5e0!3m2!1sid!2sid!4v1761466264388!5m2!1sid!2sid"
-            width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
+      class="bg-gray-200 dark:bg-gray-700 rounded-2xl overflow-hidden shadow-lg relative transition-all duration-500 hover:shadow-emerald-500/20">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.0296537088107!2d106.99192877586863!3d-6.259824261288034!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e698dce2ab0c19d%3A0x5705a69c5fd93556!2sUniversitas%20Bina%20Insani!5e0!3m2!1sid!2sid!4v1761466264388!5m2!1sid!2sid"
+        width="1400" height="500" style="border:0;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </div>
 </section>

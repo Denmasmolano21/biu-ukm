@@ -6,7 +6,7 @@
       <!-- Logo & Deskripsi -->
       <div>
         <div class="flex items-center space-x-3 mb-4">
-          <img src="{{ asset('logo-text-biu.png') }}" alt="Logo Bina Insani" class="h-12 object-contain">
+          <img src="{{ asset('assets/img/logo-text-biu.png') }}" alt="Logo Bina Insani" class="h-12 object-contain">
         </div>
         <p class="text-gray-400 text-sm leading-relaxed">
           Platform informasi dan kolaborasi <span class="text-emerald-400 font-medium">Unit Kegiatan Mahasiswa</span>

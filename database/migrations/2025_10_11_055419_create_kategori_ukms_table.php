@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->string('slug')->unique();
-            $table->string('icon')->nullable();
             $table->string('warna')->default('emerald'); // untuk tailwind color
             $table->text('deskripsi')->nullable();
             $table->integer('urutan')->default(0);

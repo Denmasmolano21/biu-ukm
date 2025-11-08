@@ -8,14 +8,14 @@
   <title>@yield('title', 'Portal UKM - Bina Insani University')</title>
 
   <!-- Favicon -->
-  <link rel="icon" href="{{ asset('logo-biu.png') }}" type="image/png" />
+  <link rel="icon" href="{{ asset('assets/img/logo-biu.png') }}" type="image/png" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.bunny.net">
   <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
 
   <!-- AOS Animation -->
-  <link rel="stylesheet" href="{{ asset('aos.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/aos.css') }}">
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
@@ -33,7 +33,7 @@
   </main>
 
   <!-- Script -->
-  <script src="{{ asset('aos.js') }}"></script>
+  <script src="{{ asset('assets/js/aos.js') }}"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const htmlEl = document.documentElement;

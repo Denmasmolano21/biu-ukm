@@ -44,7 +44,7 @@
           <div class="absolute inset-4 border-2 border-teal-500/20 rounded-full animate-spin-reverse"></div>
 
           <!-- Logo -->
-          <img src="{{ asset('logo-biu.png') }}" alt="Logo Bina Insani University"
+          <img src="{{ asset('assets/img/logo-biu.png') }}" alt="Logo Bina Insani University"
             class="w-40 sm:w-56 md:w-[26rem] lg:w-[30rem] xl:w-[34rem] h-auto object-contain relative z-10" />
         </div>
       </div>

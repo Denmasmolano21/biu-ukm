@@ -6,7 +6,7 @@
 
       <!-- 🌱 Logo -->
       <a href="/" class="flex items-center space-x-3 group">
-        <img src="{{ asset('logo-text-biu.png') }}" alt="Portal UKM Logo"
+        <img src="{{ asset('assets/img/logo-text-biu.png') }}" alt="Portal UKM Logo"
           class="h-10 w-auto transition-transform duration-300 group-hover:scale-105">
       </a>
 
